@@ -234,6 +234,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BD\BD.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
