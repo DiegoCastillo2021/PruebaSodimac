@@ -1,0 +1,1514 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model_Car_Center.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLN_CLIENTE">
+          <Key>
+            <PropertyRef Name="CLN_NUMERO_DOCUMENTO" />
+          </Key>
+          <Property Name="CLN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CLN_TIPO_DOCUMENTO" Type="int" />
+          <Property Name="CLN_NUMERO_DOCUMENTO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CLN_PRIMER_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CLN_SEGUNDO_NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="CLN_PRIMER_APELLIDO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CLN_SEGUNDO_APELLIDO" Type="varchar" MaxLength="50" />
+          <Property Name="CLN_CELULAR" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CLN_DIRECCION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CLN_EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CLN_ESTADO" Type="int" />
+        </EntityType>
+        <EntityType Name="CTG_CATALOGO">
+          <Key>
+            <PropertyRef Name="CTG_ID" />
+          </Key>
+          <Property Name="CTG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CTG_DESCRIPCION" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="CTG_ESTADO" Type="char" MaxLength="1" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CAR_CENTER.dbo.DTL_DETALLE_FACTURA_RPT' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DTL_DETALLE_FACTURA_RPT">
+          <Key>
+            <PropertyRef Name="DTL_DETALLE_RPT" />
+            <PropertyRef Name="DTL_VALOR" />
+          </Key>
+          <Property Name="DTL_ID_FACTURA" Type="int" />
+          <Property Name="DTL_DETALLE_RPT" Type="int" Nullable="false" />
+          <Property Name="DTL_DESCUENTO_RPT" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="DTL_VALOR" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CAR_CENTER.dbo.DTL_DETALLE_FACTURA_SRV' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DTL_DETALLE_FACTURA_SRV">
+          <Key>
+            <PropertyRef Name="DTL_DETALLE_SRV" />
+            <PropertyRef Name="DTL_VALOR" />
+          </Key>
+          <Property Name="DTL_ID_FACTURA" Type="int" />
+          <Property Name="DTL_DETALLE_SRV" Type="int" Nullable="false" />
+          <Property Name="DTL_DESCUENTO_SRV" Type="numeric" Precision="4" Scale="2" />
+          <Property Name="DTL_VALOR" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DTL_DETALLE_MANTENIMIENTO_RPT">
+          <Key>
+            <PropertyRef Name="DTL_ID" />
+          </Key>
+          <Property Name="DTL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DTL_ID_MTN" Type="int" />
+          <Property Name="DTL_ID_REPUESTO" Type="varchar" MaxLength="20" />
+          <Property Name="DTL_CANTIDAD_RPT" Type="int" Nullable="false" />
+          <Property Name="DTL_ESTADO" Type="int" />
+        </EntityType>
+        <EntityType Name="DTL_DETALLE_MANTENIMIENTO_SRV">
+          <Key>
+            <PropertyRef Name="DTL_ID" />
+          </Key>
+          <Property Name="DTL_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DTL_ID_MTN" Type="int" />
+          <Property Name="DTL_ID_SERVICIO" Type="int" />
+          <Property Name="DTL_CANTIDAD_SRV" Type="int" Nullable="false" />
+          <Property Name="DTL_ESTADO" Type="int" />
+          <Property Name="DTL_TECNICO" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="EMP_EMPLEADO">
+          <Key>
+            <PropertyRef Name="EMP_NUMERO_DOCUMENTO" />
+          </Key>
+          <Property Name="EMP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMP_TIPO_DOCUMENTO" Type="int" />
+          <Property Name="EMP_NUMERO_DOCUMENTO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="EMP_PRIMER_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMP_SEGUNDO_NOMBRE" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_PRIMER_APELLIDO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMP_SEGUNDO_APELLIDO" Type="varchar" MaxLength="50" />
+          <Property Name="EMP_CELULAR" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="EMP_DIRECCION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EMP_EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="EMP_ESTADO" Type="int" />
+          <Property Name="EMP_ID_TIENDA" Type="int" />
+        </EntityType>
+        <EntityType Name="FAC_FACTURA">
+          <Key>
+            <PropertyRef Name="FAC_ID" />
+          </Key>
+          <Property Name="FAC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAC_ID_TIENDA" Type="int" />
+          <Property Name="FAC_FECHA_REGISTRO" Type="datetime" Nullable="false" />
+          <Property Name="FAC_ID_MTN" Type="int" />
+          <Property Name="FAC_ESTADO" Type="int" />
+          <Property Name="FAC_SUBTOTAL" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="FAC_IMPUESTO" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FAC_TOTAL" Type="numeric" Precision="12" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MTN_MANTENIMIENTO">
+          <Key>
+            <PropertyRef Name="MTN_ID" />
+          </Key>
+          <Property Name="MTN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MTN_FECHA_ENTRADA" Type="datetime" Nullable="false" />
+          <Property Name="MTN_FECHA_SALIDA" Type="datetime" Nullable="false" />
+          <Property Name="MTN_VEHICULO" Type="varchar" MaxLength="8" />
+          <Property Name="MTN_PRESUPUESTO" Type="numeric" Precision="12" Scale="2" />
+          <Property Name="MTN_ESTADO" Type="int" />
+          <Property Name="MTN_TECNICO" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="RPT_REPUESTO">
+          <Key>
+            <PropertyRef Name="RPT_SERIAL" />
+          </Key>
+          <Property Name="RPT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RPT_SERIAL" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RPT_NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RPT_DESCRIPCION" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="RPT_PRECIO_UND" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="RPT_UNIDADES" Type="int" Nullable="false" />
+          <Property Name="RPT_PORC_DESCUENTO" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SRV_SERVICIO">
+          <Key>
+            <PropertyRef Name="SRV_ID" />
+          </Key>
+          <Property Name="SRV_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SRV_NOMBRE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SRV_DESCRIPCION" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="SRV_VALOR_MINIMO" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SRV_VALOR_MAXIMO" Type="numeric" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SRV_DESCUENTO" Type="numeric" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TDN_TIENDA">
+          <Key>
+            <PropertyRef Name="TDN_ID" />
+          </Key>
+          <Property Name="TDN_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TND_NOMBRE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TND_DIRECCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TND_TELEFONO" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TND_ESTADO" Type="int" />
+        </EntityType>
+        <EntityType Name="VHE_VEHICULO">
+          <Key>
+            <PropertyRef Name="VHE_PLACA" />
+          </Key>
+          <Property Name="VHE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VHE_PLACA" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="VHE_SERIAL_CHASIS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VHE_SERIAL_MOTOR" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VHE_MARCA" Type="int" />
+          <Property Name="VHE_MODELO" Type="int" />
+          <Property Name="VHE_ESTADO_FISICO" Type="int" />
+          <Property Name="VHE_DESCRIPCION_ESTADO" Type="varchar(max)" Nullable="false" />
+          <Property Name="VHE_ESTADO" Type="int" />
+          <Property Name="VHE_PROPIETARIO" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="VLC_VALOR_CATALOGO">
+          <Key>
+            <PropertyRef Name="VLC_ID" />
+          </Key>
+          <Property Name="VLC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VLC_DESCRIPCION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="VLC_VALOR" Type="varchar" MaxLength="250" />
+          <Property Name="CTG_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK__CLN_CLIEN__CLN_E__2A4B4B5E">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="CLN_CLIENTE" Type="Self.CLN_CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="CLN_CLIENTE">
+              <PropertyRef Name="CLN_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLN_CLIEN__CLN_T__29572725">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="CLN_CLIENTE" Type="Self.CLN_CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="CLN_CLIENTE">
+              <PropertyRef Name="CLN_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_E__4AB81AF0">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" Type="Self.DTL_DETALLE_MANTENIMIENTO_RPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_RPT">
+              <PropertyRef Name="DTL_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_E__4F7CD00D">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" Type="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_SRV">
+              <PropertyRef Name="DTL_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__48CFD27E">
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" Type="Self.DTL_DETALLE_MANTENIMIENTO_RPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_RPT">
+              <PropertyRef Name="DTL_ID_MTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__49C3F6B7">
+          <End Role="RPT_REPUESTO" Type="Self.RPT_REPUESTO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" Type="Self.DTL_DETALLE_MANTENIMIENTO_RPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RPT_REPUESTO">
+              <PropertyRef Name="RPT_SERIAL" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_RPT">
+              <PropertyRef Name="DTL_ID_REPUESTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__4D94879B">
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" Type="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_SRV">
+              <PropertyRef Name="DTL_ID_MTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__4E88ABD4">
+          <End Role="SRV_SERVICIO" Type="Self.SRV_SERVICIO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" Type="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SRV_SERVICIO">
+              <PropertyRef Name="SRV_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_SRV">
+              <PropertyRef Name="DTL_ID_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__52593CB8">
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_FACTURA_RPT" Type="Self.DTL_DETALLE_FACTURA_RPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_FACTURA_RPT">
+              <PropertyRef Name="DTL_ID_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__5441852A">
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_FACTURA_SRV" Type="Self.DTL_DETALLE_FACTURA_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_FACTURA_SRV">
+              <PropertyRef Name="DTL_ID_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_T__5070F446">
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" Type="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_NUMERO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_SRV">
+              <PropertyRef Name="DTL_TECNICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMP_EMPLE__EMP_E__37A5467C">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMP_EMPLE__EMP_I__38996AB5">
+          <End Role="TDN_TIENDA" Type="Self.TDN_TIENDA" Multiplicity="0..1" />
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TDN_TIENDA">
+              <PropertyRef Name="TDN_ID" />
+            </Principal>
+            <Dependent Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_ID_TIENDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMP_EMPLE__EMP_T__36B12243">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAC_FACTU__FAC_E__45F365D3">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAC_FACTU__FAC_I__440B1D61">
+          <End Role="TDN_TIENDA" Type="Self.TDN_TIENDA" Multiplicity="0..1" />
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TDN_TIENDA">
+              <PropertyRef Name="TDN_ID" />
+            </Principal>
+            <Dependent Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ID_TIENDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAC_FACTU__FAC_I__44FF419A">
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="0..1" />
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_ID" />
+            </Principal>
+            <Dependent Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ID_MTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MTN_MANTE__MTN_E__3C69FB99">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MTN_MANTE__MTN_T__3D5E1FD2">
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="0..1" />
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_NUMERO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_TECNICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MTN_MANTE__MTN_V__3B75D760">
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="0..1" />
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_PLACA" />
+            </Principal>
+            <Dependent Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_VEHICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TDN_TIEND__TND_E__33D4B598">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="TDN_TIENDA" Type="Self.TDN_TIENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="TDN_TIENDA">
+              <PropertyRef Name="TND_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_E__2F10007B">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_ESTADO_FISICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_E__300424B4">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_M__2D27B809">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_M__2E1BDC42">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_MODELO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_P__30F848ED">
+          <End Role="CLN_CLIENTE" Type="Self.CLN_CLIENTE" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLN_CLIENTE">
+              <PropertyRef Name="CLN_NUMERO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_PROPIETARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VLC_VALOR__CTG_I__267ABA7A">
+          <End Role="CTG_CATALOGO" Type="Self.CTG_CATALOGO" Multiplicity="0..1" />
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTG_CATALOGO">
+              <PropertyRef Name="CTG_ID" />
+            </Principal>
+            <Dependent Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="CTG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Model_Car_CenterStoreContainer">
+          <EntitySet Name="CLN_CLIENTE" EntityType="Self.CLN_CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTG_CATALOGO" EntityType="Self.CTG_CATALOGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DTL_DETALLE_MANTENIMIENTO_RPT" EntityType="Self.DTL_DETALLE_MANTENIMIENTO_RPT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DTL_DETALLE_MANTENIMIENTO_SRV" EntityType="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMP_EMPLEADO" EntityType="Self.EMP_EMPLEADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAC_FACTURA" EntityType="Self.FAC_FACTURA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MTN_MANTENIMIENTO" EntityType="Self.MTN_MANTENIMIENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RPT_REPUESTO" EntityType="Self.RPT_REPUESTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SRV_SERVICIO" EntityType="Self.SRV_SERVICIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TDN_TIENDA" EntityType="Self.TDN_TIENDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VHE_VEHICULO" EntityType="Self.VHE_VEHICULO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VLC_VALOR_CATALOGO" EntityType="Self.VLC_VALOR_CATALOGO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DTL_DETALLE_FACTURA_RPT" EntityType="Self.DTL_DETALLE_FACTURA_RPT" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[DTL_DETALLE_FACTURA_RPT].[DTL_ID_FACTURA] AS [DTL_ID_FACTURA], 
+[DTL_DETALLE_FACTURA_RPT].[DTL_DETALLE_RPT] AS [DTL_DETALLE_RPT], 
+[DTL_DETALLE_FACTURA_RPT].[DTL_DESCUENTO_RPT] AS [DTL_DESCUENTO_RPT], 
+[DTL_DETALLE_FACTURA_RPT].[DTL_VALOR] AS [DTL_VALOR]
+FROM [dbo].[DTL_DETALLE_FACTURA_RPT] AS [DTL_DETALLE_FACTURA_RPT]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DTL_DETALLE_FACTURA_SRV" EntityType="Self.DTL_DETALLE_FACTURA_SRV" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[DTL_DETALLE_FACTURA_SRV].[DTL_ID_FACTURA] AS [DTL_ID_FACTURA], 
+[DTL_DETALLE_FACTURA_SRV].[DTL_DETALLE_SRV] AS [DTL_DETALLE_SRV], 
+[DTL_DETALLE_FACTURA_SRV].[DTL_DESCUENTO_SRV] AS [DTL_DESCUENTO_SRV], 
+[DTL_DETALLE_FACTURA_SRV].[DTL_VALOR] AS [DTL_VALOR]
+FROM [dbo].[DTL_DETALLE_FACTURA_SRV] AS [DTL_DETALLE_FACTURA_SRV]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__CLN_CLIEN__CLN_E__2A4B4B5E" Association="Self.FK__CLN_CLIEN__CLN_E__2A4B4B5E">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="CLN_CLIENTE" EntitySet="CLN_CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLN_CLIEN__CLN_T__29572725" Association="Self.FK__CLN_CLIEN__CLN_T__29572725">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="CLN_CLIENTE" EntitySet="CLN_CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_E__4AB81AF0" Association="Self.FK__DTL_DETAL__DTL_E__4AB81AF0">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" EntitySet="DTL_DETALLE_MANTENIMIENTO_RPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_E__4F7CD00D" Association="Self.FK__DTL_DETAL__DTL_E__4F7CD00D">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" EntitySet="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__48CFD27E" Association="Self.FK__DTL_DETAL__DTL_I__48CFD27E">
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" EntitySet="DTL_DETALLE_MANTENIMIENTO_RPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__49C3F6B7" Association="Self.FK__DTL_DETAL__DTL_I__49C3F6B7">
+            <End Role="RPT_REPUESTO" EntitySet="RPT_REPUESTO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" EntitySet="DTL_DETALLE_MANTENIMIENTO_RPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__4D94879B" Association="Self.FK__DTL_DETAL__DTL_I__4D94879B">
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" EntitySet="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__4E88ABD4" Association="Self.FK__DTL_DETAL__DTL_I__4E88ABD4">
+            <End Role="SRV_SERVICIO" EntitySet="SRV_SERVICIO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" EntitySet="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__52593CB8" Association="Self.FK__DTL_DETAL__DTL_I__52593CB8">
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+            <End Role="DTL_DETALLE_FACTURA_RPT" EntitySet="DTL_DETALLE_FACTURA_RPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__5441852A" Association="Self.FK__DTL_DETAL__DTL_I__5441852A">
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+            <End Role="DTL_DETALLE_FACTURA_SRV" EntitySet="DTL_DETALLE_FACTURA_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_T__5070F446" Association="Self.FK__DTL_DETAL__DTL_T__5070F446">
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" EntitySet="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMP_EMPLE__EMP_E__37A5467C" Association="Self.FK__EMP_EMPLE__EMP_E__37A5467C">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMP_EMPLE__EMP_I__38996AB5" Association="Self.FK__EMP_EMPLE__EMP_I__38996AB5">
+            <End Role="TDN_TIENDA" EntitySet="TDN_TIENDA" />
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMP_EMPLE__EMP_T__36B12243" Association="Self.FK__EMP_EMPLE__EMP_T__36B12243">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAC_FACTU__FAC_E__45F365D3" Association="Self.FK__FAC_FACTU__FAC_E__45F365D3">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAC_FACTU__FAC_I__440B1D61" Association="Self.FK__FAC_FACTU__FAC_I__440B1D61">
+            <End Role="TDN_TIENDA" EntitySet="TDN_TIENDA" />
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAC_FACTU__FAC_I__44FF419A" Association="Self.FK__FAC_FACTU__FAC_I__44FF419A">
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MTN_MANTE__MTN_E__3C69FB99" Association="Self.FK__MTN_MANTE__MTN_E__3C69FB99">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MTN_MANTE__MTN_T__3D5E1FD2" Association="Self.FK__MTN_MANTE__MTN_T__3D5E1FD2">
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MTN_MANTE__MTN_V__3B75D760" Association="Self.FK__MTN_MANTE__MTN_V__3B75D760">
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TDN_TIEND__TND_E__33D4B598" Association="Self.FK__TDN_TIEND__TND_E__33D4B598">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="TDN_TIENDA" EntitySet="TDN_TIENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_E__2F10007B" Association="Self.FK__VHE_VEHIC__VHE_E__2F10007B">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_E__300424B4" Association="Self.FK__VHE_VEHIC__VHE_E__300424B4">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_M__2D27B809" Association="Self.FK__VHE_VEHIC__VHE_M__2D27B809">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_M__2E1BDC42" Association="Self.FK__VHE_VEHIC__VHE_M__2E1BDC42">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_P__30F848ED" Association="Self.FK__VHE_VEHIC__VHE_P__30F848ED">
+            <End Role="CLN_CLIENTE" EntitySet="CLN_CLIENTE" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VLC_VALOR__CTG_I__267ABA7A" Association="Self.FK__VLC_VALOR__CTG_I__267ABA7A">
+            <End Role="CTG_CATALOGO" EntitySet="CTG_CATALOGO" />
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model_Car_Center" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLN_CLIENTE">
+          <Key>
+            <PropertyRef Name="CLN_NUMERO_DOCUMENTO" />
+          </Key>
+          <Property Name="CLN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CLN_TIPO_DOCUMENTO" Type="Int32" />
+          <Property Name="CLN_NUMERO_DOCUMENTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLN_PRIMER_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLN_SEGUNDO_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CLN_PRIMER_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLN_SEGUNDO_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CLN_CELULAR" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CLN_DIRECCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLN_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CLN_ESTADO" Type="Int32" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__CLN_CLIEN__CLN_E__2A4B4B5E" FromRole="CLN_CLIENTE" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO1" Relationship="Self.FK__CLN_CLIEN__CLN_T__29572725" FromRole="CLN_CLIENTE" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="VHE_VEHICULO" Relationship="Self.FK__VHE_VEHIC__VHE_P__30F848ED" FromRole="CLN_CLIENTE" ToRole="VHE_VEHICULO" />
+        </EntityType>
+        <EntityType Name="CTG_CATALOGO">
+          <Key>
+            <PropertyRef Name="CTG_ID" />
+          </Key>
+          <Property Name="CTG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CTG_DESCRIPCION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CTG_ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__VLC_VALOR__CTG_I__267ABA7A" FromRole="CTG_CATALOGO" ToRole="VLC_VALOR_CATALOGO" />
+        </EntityType>
+        <EntityType Name="DTL_DETALLE_MANTENIMIENTO_RPT">
+          <Key>
+            <PropertyRef Name="DTL_ID" />
+          </Key>
+          <Property Name="DTL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DTL_ID_MTN" Type="Int32" />
+          <Property Name="DTL_ID_REPUESTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DTL_CANTIDAD_RPT" Type="Int32" Nullable="false" />
+          <Property Name="DTL_ESTADO" Type="Int32" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__DTL_DETAL__DTL_E__4AB81AF0" FromRole="DTL_DETALLE_MANTENIMIENTO_RPT" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="MTN_MANTENIMIENTO" Relationship="Self.FK__DTL_DETAL__DTL_I__48CFD27E" FromRole="DTL_DETALLE_MANTENIMIENTO_RPT" ToRole="MTN_MANTENIMIENTO" />
+          <NavigationProperty Name="RPT_REPUESTO" Relationship="Self.FK__DTL_DETAL__DTL_I__49C3F6B7" FromRole="DTL_DETALLE_MANTENIMIENTO_RPT" ToRole="RPT_REPUESTO" />
+        </EntityType>
+        <EntityType Name="DTL_DETALLE_MANTENIMIENTO_SRV">
+          <Key>
+            <PropertyRef Name="DTL_ID" />
+          </Key>
+          <Property Name="DTL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DTL_ID_MTN" Type="Int32" />
+          <Property Name="DTL_ID_SERVICIO" Type="Int32" />
+          <Property Name="DTL_CANTIDAD_SRV" Type="Int32" Nullable="false" />
+          <Property Name="DTL_ESTADO" Type="Int32" />
+          <Property Name="DTL_TECNICO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__DTL_DETAL__DTL_E__4F7CD00D" FromRole="DTL_DETALLE_MANTENIMIENTO_SRV" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="MTN_MANTENIMIENTO" Relationship="Self.FK__DTL_DETAL__DTL_I__4D94879B" FromRole="DTL_DETALLE_MANTENIMIENTO_SRV" ToRole="MTN_MANTENIMIENTO" />
+          <NavigationProperty Name="SRV_SERVICIO" Relationship="Self.FK__DTL_DETAL__DTL_I__4E88ABD4" FromRole="DTL_DETALLE_MANTENIMIENTO_SRV" ToRole="SRV_SERVICIO" />
+          <NavigationProperty Name="EMP_EMPLEADO" Relationship="Self.FK__DTL_DETAL__DTL_T__5070F446" FromRole="DTL_DETALLE_MANTENIMIENTO_SRV" ToRole="EMP_EMPLEADO" />
+        </EntityType>
+        <EntityType Name="EMP_EMPLEADO">
+          <Key>
+            <PropertyRef Name="EMP_NUMERO_DOCUMENTO" />
+          </Key>
+          <Property Name="EMP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMP_TIPO_DOCUMENTO" Type="Int32" />
+          <Property Name="EMP_NUMERO_DOCUMENTO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_PRIMER_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_SEGUNDO_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMP_PRIMER_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_SEGUNDO_APELLIDO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMP_CELULAR" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="EMP_DIRECCION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMP_ESTADO" Type="Int32" />
+          <Property Name="EMP_ID_TIENDA" Type="Int32" />
+          <NavigationProperty Name="DTL_DETALLE_MANTENIMIENTO_SRV" Relationship="Self.FK__DTL_DETAL__DTL_T__5070F446" FromRole="EMP_EMPLEADO" ToRole="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__EMP_EMPLE__EMP_E__37A5467C" FromRole="EMP_EMPLEADO" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="TDN_TIENDA" Relationship="Self.FK__EMP_EMPLE__EMP_I__38996AB5" FromRole="EMP_EMPLEADO" ToRole="TDN_TIENDA" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO1" Relationship="Self.FK__EMP_EMPLE__EMP_T__36B12243" FromRole="EMP_EMPLEADO" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="MTN_MANTENIMIENTO" Relationship="Self.FK__MTN_MANTE__MTN_T__3D5E1FD2" FromRole="EMP_EMPLEADO" ToRole="MTN_MANTENIMIENTO" />
+        </EntityType>
+        <EntityType Name="FAC_FACTURA">
+          <Key>
+            <PropertyRef Name="FAC_ID" />
+          </Key>
+          <Property Name="FAC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FAC_ID_TIENDA" Type="Int32" />
+          <Property Name="FAC_FECHA_REGISTRO" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FAC_ID_MTN" Type="Int32" />
+          <Property Name="FAC_ESTADO" Type="Int32" />
+          <Property Name="FAC_SUBTOTAL" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <Property Name="FAC_IMPUESTO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FAC_TOTAL" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <NavigationProperty Name="DTL_DETALLE_FACTURA_RPT" Relationship="Self.FK__DTL_DETAL__DTL_I__52593CB8" FromRole="FAC_FACTURA" ToRole="DTL_DETALLE_FACTURA_RPT" />
+          <NavigationProperty Name="DTL_DETALLE_FACTURA_SRV" Relationship="Self.FK__DTL_DETAL__DTL_I__5441852A" FromRole="FAC_FACTURA" ToRole="DTL_DETALLE_FACTURA_SRV" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__FAC_FACTU__FAC_E__45F365D3" FromRole="FAC_FACTURA" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="TDN_TIENDA" Relationship="Self.FK__FAC_FACTU__FAC_I__440B1D61" FromRole="FAC_FACTURA" ToRole="TDN_TIENDA" />
+          <NavigationProperty Name="MTN_MANTENIMIENTO" Relationship="Self.FK__FAC_FACTU__FAC_I__44FF419A" FromRole="FAC_FACTURA" ToRole="MTN_MANTENIMIENTO" />
+        </EntityType>
+        <EntityType Name="MTN_MANTENIMIENTO">
+          <Key>
+            <PropertyRef Name="MTN_ID" />
+          </Key>
+          <Property Name="MTN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MTN_FECHA_ENTRADA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MTN_FECHA_SALIDA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MTN_VEHICULO" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="MTN_PRESUPUESTO" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="MTN_ESTADO" Type="Int32" />
+          <Property Name="MTN_TECNICO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DTL_DETALLE_MANTENIMIENTO_RPT" Relationship="Self.FK__DTL_DETAL__DTL_I__48CFD27E" FromRole="MTN_MANTENIMIENTO" ToRole="DTL_DETALLE_MANTENIMIENTO_RPT" />
+          <NavigationProperty Name="DTL_DETALLE_MANTENIMIENTO_SRV" Relationship="Self.FK__DTL_DETAL__DTL_I__4D94879B" FromRole="MTN_MANTENIMIENTO" ToRole="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          <NavigationProperty Name="EMP_EMPLEADO" Relationship="Self.FK__MTN_MANTE__MTN_T__3D5E1FD2" FromRole="MTN_MANTENIMIENTO" ToRole="EMP_EMPLEADO" />
+          <NavigationProperty Name="FAC_FACTURA" Relationship="Self.FK__FAC_FACTU__FAC_I__44FF419A" FromRole="MTN_MANTENIMIENTO" ToRole="FAC_FACTURA" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__MTN_MANTE__MTN_E__3C69FB99" FromRole="MTN_MANTENIMIENTO" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="VHE_VEHICULO" Relationship="Self.FK__MTN_MANTE__MTN_V__3B75D760" FromRole="MTN_MANTENIMIENTO" ToRole="VHE_VEHICULO" />
+        </EntityType>
+        <EntityType Name="RPT_REPUESTO">
+          <Key>
+            <PropertyRef Name="RPT_SERIAL" />
+          </Key>
+          <Property Name="RPT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RPT_SERIAL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RPT_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RPT_DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RPT_PRECIO_UND" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="RPT_UNIDADES" Type="Int32" Nullable="false" />
+          <Property Name="RPT_PORC_DESCUENTO" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <NavigationProperty Name="DTL_DETALLE_MANTENIMIENTO_RPT" Relationship="Self.FK__DTL_DETAL__DTL_I__49C3F6B7" FromRole="RPT_REPUESTO" ToRole="DTL_DETALLE_MANTENIMIENTO_RPT" />
+        </EntityType>
+        <EntityType Name="SRV_SERVICIO">
+          <Key>
+            <PropertyRef Name="SRV_ID" />
+          </Key>
+          <Property Name="SRV_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SRV_NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SRV_DESCRIPCION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SRV_VALOR_MINIMO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SRV_VALOR_MAXIMO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SRV_DESCUENTO" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <NavigationProperty Name="DTL_DETALLE_MANTENIMIENTO_SRV" Relationship="Self.FK__DTL_DETAL__DTL_I__4E88ABD4" FromRole="SRV_SERVICIO" ToRole="DTL_DETALLE_MANTENIMIENTO_SRV" />
+        </EntityType>
+        <EntityType Name="TDN_TIENDA">
+          <Key>
+            <PropertyRef Name="TDN_ID" />
+          </Key>
+          <Property Name="TDN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TND_NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TND_DIRECCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TND_TELEFONO" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TND_ESTADO" Type="Int32" />
+          <NavigationProperty Name="EMP_EMPLEADO" Relationship="Self.FK__EMP_EMPLE__EMP_I__38996AB5" FromRole="TDN_TIENDA" ToRole="EMP_EMPLEADO" />
+          <NavigationProperty Name="FAC_FACTURA" Relationship="Self.FK__FAC_FACTU__FAC_I__440B1D61" FromRole="TDN_TIENDA" ToRole="FAC_FACTURA" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__TDN_TIEND__TND_E__33D4B598" FromRole="TDN_TIENDA" ToRole="VLC_VALOR_CATALOGO" />
+        </EntityType>
+        <EntityType Name="VHE_VEHICULO">
+          <Key>
+            <PropertyRef Name="VHE_PLACA" />
+          </Key>
+          <Property Name="VHE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VHE_PLACA" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VHE_SERIAL_CHASIS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VHE_SERIAL_MOTOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VHE_MARCA" Type="Int32" />
+          <Property Name="VHE_MODELO" Type="Int32" />
+          <Property Name="VHE_ESTADO_FISICO" Type="Int32" />
+          <Property Name="VHE_DESCRIPCION_ESTADO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VHE_ESTADO" Type="Int32" />
+          <Property Name="VHE_PROPIETARIO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLN_CLIENTE" Relationship="Self.FK__VHE_VEHIC__VHE_P__30F848ED" FromRole="VHE_VEHICULO" ToRole="CLN_CLIENTE" />
+          <NavigationProperty Name="MTN_MANTENIMIENTO" Relationship="Self.FK__MTN_MANTE__MTN_V__3B75D760" FromRole="VHE_VEHICULO" ToRole="MTN_MANTENIMIENTO" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO" Relationship="Self.FK__VHE_VEHIC__VHE_E__2F10007B" FromRole="VHE_VEHICULO" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO1" Relationship="Self.FK__VHE_VEHIC__VHE_E__300424B4" FromRole="VHE_VEHICULO" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO2" Relationship="Self.FK__VHE_VEHIC__VHE_M__2D27B809" FromRole="VHE_VEHICULO" ToRole="VLC_VALOR_CATALOGO" />
+          <NavigationProperty Name="VLC_VALOR_CATALOGO3" Relationship="Self.FK__VHE_VEHIC__VHE_M__2E1BDC42" FromRole="VHE_VEHICULO" ToRole="VLC_VALOR_CATALOGO" />
+        </EntityType>
+        <EntityType Name="VLC_VALOR_CATALOGO">
+          <Key>
+            <PropertyRef Name="VLC_ID" />
+          </Key>
+          <Property Name="VLC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VLC_DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VLC_VALOR" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CTG_ID" Type="Int32" />
+          <NavigationProperty Name="CLN_CLIENTE" Relationship="Self.FK__CLN_CLIEN__CLN_E__2A4B4B5E" FromRole="VLC_VALOR_CATALOGO" ToRole="CLN_CLIENTE" />
+          <NavigationProperty Name="CLN_CLIENTE1" Relationship="Self.FK__CLN_CLIEN__CLN_T__29572725" FromRole="VLC_VALOR_CATALOGO" ToRole="CLN_CLIENTE" />
+          <NavigationProperty Name="CTG_CATALOGO" Relationship="Self.FK__VLC_VALOR__CTG_I__267ABA7A" FromRole="VLC_VALOR_CATALOGO" ToRole="CTG_CATALOGO" />
+          <NavigationProperty Name="DTL_DETALLE_MANTENIMIENTO_RPT" Relationship="Self.FK__DTL_DETAL__DTL_E__4AB81AF0" FromRole="VLC_VALOR_CATALOGO" ToRole="DTL_DETALLE_MANTENIMIENTO_RPT" />
+          <NavigationProperty Name="DTL_DETALLE_MANTENIMIENTO_SRV" Relationship="Self.FK__DTL_DETAL__DTL_E__4F7CD00D" FromRole="VLC_VALOR_CATALOGO" ToRole="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          <NavigationProperty Name="EMP_EMPLEADO" Relationship="Self.FK__EMP_EMPLE__EMP_E__37A5467C" FromRole="VLC_VALOR_CATALOGO" ToRole="EMP_EMPLEADO" />
+          <NavigationProperty Name="EMP_EMPLEADO1" Relationship="Self.FK__EMP_EMPLE__EMP_T__36B12243" FromRole="VLC_VALOR_CATALOGO" ToRole="EMP_EMPLEADO" />
+          <NavigationProperty Name="FAC_FACTURA" Relationship="Self.FK__FAC_FACTU__FAC_E__45F365D3" FromRole="VLC_VALOR_CATALOGO" ToRole="FAC_FACTURA" />
+          <NavigationProperty Name="MTN_MANTENIMIENTO" Relationship="Self.FK__MTN_MANTE__MTN_E__3C69FB99" FromRole="VLC_VALOR_CATALOGO" ToRole="MTN_MANTENIMIENTO" />
+          <NavigationProperty Name="TDN_TIENDA" Relationship="Self.FK__TDN_TIEND__TND_E__33D4B598" FromRole="VLC_VALOR_CATALOGO" ToRole="TDN_TIENDA" />
+          <NavigationProperty Name="VHE_VEHICULO" Relationship="Self.FK__VHE_VEHIC__VHE_E__2F10007B" FromRole="VLC_VALOR_CATALOGO" ToRole="VHE_VEHICULO" />
+          <NavigationProperty Name="VHE_VEHICULO1" Relationship="Self.FK__VHE_VEHIC__VHE_E__300424B4" FromRole="VLC_VALOR_CATALOGO" ToRole="VHE_VEHICULO" />
+          <NavigationProperty Name="VHE_VEHICULO2" Relationship="Self.FK__VHE_VEHIC__VHE_M__2D27B809" FromRole="VLC_VALOR_CATALOGO" ToRole="VHE_VEHICULO" />
+          <NavigationProperty Name="VHE_VEHICULO3" Relationship="Self.FK__VHE_VEHIC__VHE_M__2E1BDC42" FromRole="VLC_VALOR_CATALOGO" ToRole="VHE_VEHICULO" />
+        </EntityType>
+        <EntityType Name="DTL_DETALLE_FACTURA_RPT">
+          <Key>
+            <PropertyRef Name="DTL_DETALLE_RPT" />
+            <PropertyRef Name="DTL_VALOR" />
+          </Key>
+          <Property Name="DTL_ID_FACTURA" Type="Int32" />
+          <Property Name="DTL_DETALLE_RPT" Type="Int32" Nullable="false" />
+          <Property Name="DTL_DESCUENTO_RPT" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="DTL_VALOR" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <NavigationProperty Name="FAC_FACTURA" Relationship="Self.FK__DTL_DETAL__DTL_I__52593CB8" FromRole="DTL_DETALLE_FACTURA_RPT" ToRole="FAC_FACTURA" />
+        </EntityType>
+        <EntityType Name="DTL_DETALLE_FACTURA_SRV">
+          <Key>
+            <PropertyRef Name="DTL_DETALLE_SRV" />
+            <PropertyRef Name="DTL_VALOR" />
+          </Key>
+          <Property Name="DTL_ID_FACTURA" Type="Int32" />
+          <Property Name="DTL_DETALLE_SRV" Type="Int32" Nullable="false" />
+          <Property Name="DTL_DESCUENTO_SRV" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="DTL_VALOR" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+          <NavigationProperty Name="FAC_FACTURA" Relationship="Self.FK__DTL_DETAL__DTL_I__5441852A" FromRole="DTL_DETALLE_FACTURA_SRV" ToRole="FAC_FACTURA" />
+        </EntityType>
+        <Association Name="FK__CLN_CLIEN__CLN_E__2A4B4B5E">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="CLN_CLIENTE" Type="Self.CLN_CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="CLN_CLIENTE">
+              <PropertyRef Name="CLN_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CLN_CLIEN__CLN_T__29572725">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="CLN_CLIENTE" Type="Self.CLN_CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="CLN_CLIENTE">
+              <PropertyRef Name="CLN_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_P__30F848ED">
+          <End Role="CLN_CLIENTE" Type="Self.CLN_CLIENTE" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLN_CLIENTE">
+              <PropertyRef Name="CLN_NUMERO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_PROPIETARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VLC_VALOR__CTG_I__267ABA7A">
+          <End Role="CTG_CATALOGO" Type="Self.CTG_CATALOGO" Multiplicity="0..1" />
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CTG_CATALOGO">
+              <PropertyRef Name="CTG_ID" />
+            </Principal>
+            <Dependent Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="CTG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_E__4AB81AF0">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" Type="Self.DTL_DETALLE_MANTENIMIENTO_RPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_RPT">
+              <PropertyRef Name="DTL_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__48CFD27E">
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" Type="Self.DTL_DETALLE_MANTENIMIENTO_RPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_RPT">
+              <PropertyRef Name="DTL_ID_MTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__49C3F6B7">
+          <End Role="RPT_REPUESTO" Type="Self.RPT_REPUESTO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" Type="Self.DTL_DETALLE_MANTENIMIENTO_RPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RPT_REPUESTO">
+              <PropertyRef Name="RPT_SERIAL" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_RPT">
+              <PropertyRef Name="DTL_ID_REPUESTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_E__4F7CD00D">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" Type="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_SRV">
+              <PropertyRef Name="DTL_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__4D94879B">
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" Type="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_SRV">
+              <PropertyRef Name="DTL_ID_MTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__4E88ABD4">
+          <End Role="SRV_SERVICIO" Type="Self.SRV_SERVICIO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" Type="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SRV_SERVICIO">
+              <PropertyRef Name="SRV_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_SRV">
+              <PropertyRef Name="DTL_ID_SERVICIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_T__5070F446">
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" Type="Self.DTL_DETALLE_MANTENIMIENTO_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_NUMERO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_MANTENIMIENTO_SRV">
+              <PropertyRef Name="DTL_TECNICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMP_EMPLE__EMP_E__37A5467C">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMP_EMPLE__EMP_I__38996AB5">
+          <End Role="TDN_TIENDA" Type="Self.TDN_TIENDA" Multiplicity="0..1" />
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TDN_TIENDA">
+              <PropertyRef Name="TDN_ID" />
+            </Principal>
+            <Dependent Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_ID_TIENDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EMP_EMPLE__EMP_T__36B12243">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MTN_MANTE__MTN_T__3D5E1FD2">
+          <End Role="EMP_EMPLEADO" Type="Self.EMP_EMPLEADO" Multiplicity="0..1" />
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMP_EMPLEADO">
+              <PropertyRef Name="EMP_NUMERO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_TECNICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__52593CB8">
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_FACTURA_RPT" Type="Self.DTL_DETALLE_FACTURA_RPT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_FACTURA_RPT">
+              <PropertyRef Name="DTL_ID_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DTL_DETAL__DTL_I__5441852A">
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="0..1" />
+          <End Role="DTL_DETALLE_FACTURA_SRV" Type="Self.DTL_DETALLE_FACTURA_SRV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ID" />
+            </Principal>
+            <Dependent Role="DTL_DETALLE_FACTURA_SRV">
+              <PropertyRef Name="DTL_ID_FACTURA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAC_FACTU__FAC_E__45F365D3">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAC_FACTU__FAC_I__440B1D61">
+          <End Role="TDN_TIENDA" Type="Self.TDN_TIENDA" Multiplicity="0..1" />
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TDN_TIENDA">
+              <PropertyRef Name="TDN_ID" />
+            </Principal>
+            <Dependent Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ID_TIENDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FAC_FACTU__FAC_I__44FF419A">
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="0..1" />
+          <End Role="FAC_FACTURA" Type="Self.FAC_FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_ID" />
+            </Principal>
+            <Dependent Role="FAC_FACTURA">
+              <PropertyRef Name="FAC_ID_MTN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MTN_MANTE__MTN_E__3C69FB99">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MTN_MANTE__MTN_V__3B75D760">
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="0..1" />
+          <End Role="MTN_MANTENIMIENTO" Type="Self.MTN_MANTENIMIENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_PLACA" />
+            </Principal>
+            <Dependent Role="MTN_MANTENIMIENTO">
+              <PropertyRef Name="MTN_VEHICULO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TDN_TIEND__TND_E__33D4B598">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="TDN_TIENDA" Type="Self.TDN_TIENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="TDN_TIENDA">
+              <PropertyRef Name="TND_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_E__2F10007B">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_ESTADO_FISICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_E__300424B4">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_M__2D27B809">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VHE_VEHIC__VHE_M__2E1BDC42">
+          <End Role="VLC_VALOR_CATALOGO" Type="Self.VLC_VALOR_CATALOGO" Multiplicity="0..1" />
+          <End Role="VHE_VEHICULO" Type="Self.VHE_VEHICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VLC_VALOR_CATALOGO">
+              <PropertyRef Name="VLC_ID" />
+            </Principal>
+            <Dependent Role="VHE_VEHICULO">
+              <PropertyRef Name="VHE_MODELO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CAR_CENTERE_entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLN_CLIENTE" EntityType="Self.CLN_CLIENTE" />
+          <EntitySet Name="CTG_CATALOGO" EntityType="Self.CTG_CATALOGO" />
+          <EntitySet Name="DTL_DETALLE_MANTENIMIENTO_RPT" EntityType="Self.DTL_DETALLE_MANTENIMIENTO_RPT" />
+          <EntitySet Name="DTL_DETALLE_MANTENIMIENTO_SRV" EntityType="Self.DTL_DETALLE_MANTENIMIENTO_SRV" />
+          <EntitySet Name="EMP_EMPLEADO" EntityType="Self.EMP_EMPLEADO" />
+          <EntitySet Name="FAC_FACTURA" EntityType="Self.FAC_FACTURA" />
+          <EntitySet Name="MTN_MANTENIMIENTO" EntityType="Self.MTN_MANTENIMIENTO" />
+          <EntitySet Name="RPT_REPUESTO" EntityType="Self.RPT_REPUESTO" />
+          <EntitySet Name="SRV_SERVICIO" EntityType="Self.SRV_SERVICIO" />
+          <EntitySet Name="TDN_TIENDA" EntityType="Self.TDN_TIENDA" />
+          <EntitySet Name="VHE_VEHICULO" EntityType="Self.VHE_VEHICULO" />
+          <EntitySet Name="VLC_VALOR_CATALOGO" EntityType="Self.VLC_VALOR_CATALOGO" />
+          <EntitySet Name="DTL_DETALLE_FACTURA_RPT" EntityType="Self.DTL_DETALLE_FACTURA_RPT" />
+          <EntitySet Name="DTL_DETALLE_FACTURA_SRV" EntityType="Self.DTL_DETALLE_FACTURA_SRV" />
+          <AssociationSet Name="FK__CLN_CLIEN__CLN_E__2A4B4B5E" Association="Self.FK__CLN_CLIEN__CLN_E__2A4B4B5E">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="CLN_CLIENTE" EntitySet="CLN_CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CLN_CLIEN__CLN_T__29572725" Association="Self.FK__CLN_CLIEN__CLN_T__29572725">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="CLN_CLIENTE" EntitySet="CLN_CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_P__30F848ED" Association="Self.FK__VHE_VEHIC__VHE_P__30F848ED">
+            <End Role="CLN_CLIENTE" EntitySet="CLN_CLIENTE" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VLC_VALOR__CTG_I__267ABA7A" Association="Self.FK__VLC_VALOR__CTG_I__267ABA7A">
+            <End Role="CTG_CATALOGO" EntitySet="CTG_CATALOGO" />
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_E__4AB81AF0" Association="Self.FK__DTL_DETAL__DTL_E__4AB81AF0">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" EntitySet="DTL_DETALLE_MANTENIMIENTO_RPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__48CFD27E" Association="Self.FK__DTL_DETAL__DTL_I__48CFD27E">
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" EntitySet="DTL_DETALLE_MANTENIMIENTO_RPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__49C3F6B7" Association="Self.FK__DTL_DETAL__DTL_I__49C3F6B7">
+            <End Role="RPT_REPUESTO" EntitySet="RPT_REPUESTO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_RPT" EntitySet="DTL_DETALLE_MANTENIMIENTO_RPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_E__4F7CD00D" Association="Self.FK__DTL_DETAL__DTL_E__4F7CD00D">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" EntitySet="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__4D94879B" Association="Self.FK__DTL_DETAL__DTL_I__4D94879B">
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" EntitySet="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__4E88ABD4" Association="Self.FK__DTL_DETAL__DTL_I__4E88ABD4">
+            <End Role="SRV_SERVICIO" EntitySet="SRV_SERVICIO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" EntitySet="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_T__5070F446" Association="Self.FK__DTL_DETAL__DTL_T__5070F446">
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+            <End Role="DTL_DETALLE_MANTENIMIENTO_SRV" EntitySet="DTL_DETALLE_MANTENIMIENTO_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMP_EMPLE__EMP_E__37A5467C" Association="Self.FK__EMP_EMPLE__EMP_E__37A5467C">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMP_EMPLE__EMP_I__38996AB5" Association="Self.FK__EMP_EMPLE__EMP_I__38996AB5">
+            <End Role="TDN_TIENDA" EntitySet="TDN_TIENDA" />
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EMP_EMPLE__EMP_T__36B12243" Association="Self.FK__EMP_EMPLE__EMP_T__36B12243">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MTN_MANTE__MTN_T__3D5E1FD2" Association="Self.FK__MTN_MANTE__MTN_T__3D5E1FD2">
+            <End Role="EMP_EMPLEADO" EntitySet="EMP_EMPLEADO" />
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__52593CB8" Association="Self.FK__DTL_DETAL__DTL_I__52593CB8">
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+            <End Role="DTL_DETALLE_FACTURA_RPT" EntitySet="DTL_DETALLE_FACTURA_RPT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DTL_DETAL__DTL_I__5441852A" Association="Self.FK__DTL_DETAL__DTL_I__5441852A">
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+            <End Role="DTL_DETALLE_FACTURA_SRV" EntitySet="DTL_DETALLE_FACTURA_SRV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAC_FACTU__FAC_E__45F365D3" Association="Self.FK__FAC_FACTU__FAC_E__45F365D3">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAC_FACTU__FAC_I__440B1D61" Association="Self.FK__FAC_FACTU__FAC_I__440B1D61">
+            <End Role="TDN_TIENDA" EntitySet="TDN_TIENDA" />
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FAC_FACTU__FAC_I__44FF419A" Association="Self.FK__FAC_FACTU__FAC_I__44FF419A">
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+            <End Role="FAC_FACTURA" EntitySet="FAC_FACTURA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MTN_MANTE__MTN_E__3C69FB99" Association="Self.FK__MTN_MANTE__MTN_E__3C69FB99">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MTN_MANTE__MTN_V__3B75D760" Association="Self.FK__MTN_MANTE__MTN_V__3B75D760">
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+            <End Role="MTN_MANTENIMIENTO" EntitySet="MTN_MANTENIMIENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TDN_TIEND__TND_E__33D4B598" Association="Self.FK__TDN_TIEND__TND_E__33D4B598">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="TDN_TIENDA" EntitySet="TDN_TIENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_E__2F10007B" Association="Self.FK__VHE_VEHIC__VHE_E__2F10007B">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_E__300424B4" Association="Self.FK__VHE_VEHIC__VHE_E__300424B4">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_M__2D27B809" Association="Self.FK__VHE_VEHIC__VHE_M__2D27B809">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VHE_VEHIC__VHE_M__2E1BDC42" Association="Self.FK__VHE_VEHIC__VHE_M__2E1BDC42">
+            <End Role="VLC_VALOR_CATALOGO" EntitySet="VLC_VALOR_CATALOGO" />
+            <End Role="VHE_VEHICULO" EntitySet="VHE_VEHICULO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model_Car_CenterStoreContainer" CdmEntityContainer="CAR_CENTERE_entities">
+          <EntitySetMapping Name="CLN_CLIENTE">
+            <EntityTypeMapping TypeName="Model_Car_Center.CLN_CLIENTE">
+              <MappingFragment StoreEntitySet="CLN_CLIENTE">
+                <ScalarProperty Name="CLN_ID" ColumnName="CLN_ID" />
+                <ScalarProperty Name="CLN_TIPO_DOCUMENTO" ColumnName="CLN_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="CLN_NUMERO_DOCUMENTO" ColumnName="CLN_NUMERO_DOCUMENTO" />
+                <ScalarProperty Name="CLN_PRIMER_NOMBRE" ColumnName="CLN_PRIMER_NOMBRE" />
+                <ScalarProperty Name="CLN_SEGUNDO_NOMBRE" ColumnName="CLN_SEGUNDO_NOMBRE" />
+                <ScalarProperty Name="CLN_PRIMER_APELLIDO" ColumnName="CLN_PRIMER_APELLIDO" />
+                <ScalarProperty Name="CLN_SEGUNDO_APELLIDO" ColumnName="CLN_SEGUNDO_APELLIDO" />
+                <ScalarProperty Name="CLN_CELULAR" ColumnName="CLN_CELULAR" />
+                <ScalarProperty Name="CLN_DIRECCION" ColumnName="CLN_DIRECCION" />
+                <ScalarProperty Name="CLN_EMAIL" ColumnName="CLN_EMAIL" />
+                <ScalarProperty Name="CLN_ESTADO" ColumnName="CLN_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTG_CATALOGO">
+            <EntityTypeMapping TypeName="Model_Car_Center.CTG_CATALOGO">
+              <MappingFragment StoreEntitySet="CTG_CATALOGO">
+                <ScalarProperty Name="CTG_ID" ColumnName="CTG_ID" />
+                <ScalarProperty Name="CTG_DESCRIPCION" ColumnName="CTG_DESCRIPCION" />
+                <ScalarProperty Name="CTG_ESTADO" ColumnName="CTG_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DTL_DETALLE_MANTENIMIENTO_RPT">
+            <EntityTypeMapping TypeName="Model_Car_Center.DTL_DETALLE_MANTENIMIENTO_RPT">
+              <MappingFragment StoreEntitySet="DTL_DETALLE_MANTENIMIENTO_RPT">
+                <ScalarProperty Name="DTL_ID" ColumnName="DTL_ID" />
+                <ScalarProperty Name="DTL_ID_MTN" ColumnName="DTL_ID_MTN" />
+                <ScalarProperty Name="DTL_ID_REPUESTO" ColumnName="DTL_ID_REPUESTO" />
+                <ScalarProperty Name="DTL_CANTIDAD_RPT" ColumnName="DTL_CANTIDAD_RPT" />
+                <ScalarProperty Name="DTL_ESTADO" ColumnName="DTL_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DTL_DETALLE_MANTENIMIENTO_SRV">
+            <EntityTypeMapping TypeName="Model_Car_Center.DTL_DETALLE_MANTENIMIENTO_SRV">
+              <MappingFragment StoreEntitySet="DTL_DETALLE_MANTENIMIENTO_SRV">
+                <ScalarProperty Name="DTL_ID" ColumnName="DTL_ID" />
+                <ScalarProperty Name="DTL_ID_MTN" ColumnName="DTL_ID_MTN" />
+                <ScalarProperty Name="DTL_ID_SERVICIO" ColumnName="DTL_ID_SERVICIO" />
+                <ScalarProperty Name="DTL_CANTIDAD_SRV" ColumnName="DTL_CANTIDAD_SRV" />
+                <ScalarProperty Name="DTL_ESTADO" ColumnName="DTL_ESTADO" />
+                <ScalarProperty Name="DTL_TECNICO" ColumnName="DTL_TECNICO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMP_EMPLEADO">
+            <EntityTypeMapping TypeName="Model_Car_Center.EMP_EMPLEADO">
+              <MappingFragment StoreEntitySet="EMP_EMPLEADO">
+                <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
+                <ScalarProperty Name="EMP_TIPO_DOCUMENTO" ColumnName="EMP_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="EMP_NUMERO_DOCUMENTO" ColumnName="EMP_NUMERO_DOCUMENTO" />
+                <ScalarProperty Name="EMP_PRIMER_NOMBRE" ColumnName="EMP_PRIMER_NOMBRE" />
+                <ScalarProperty Name="EMP_SEGUNDO_NOMBRE" ColumnName="EMP_SEGUNDO_NOMBRE" />
+                <ScalarProperty Name="EMP_PRIMER_APELLIDO" ColumnName="EMP_PRIMER_APELLIDO" />
+                <ScalarProperty Name="EMP_SEGUNDO_APELLIDO" ColumnName="EMP_SEGUNDO_APELLIDO" />
+                <ScalarProperty Name="EMP_CELULAR" ColumnName="EMP_CELULAR" />
+                <ScalarProperty Name="EMP_DIRECCION" ColumnName="EMP_DIRECCION" />
+                <ScalarProperty Name="EMP_EMAIL" ColumnName="EMP_EMAIL" />
+                <ScalarProperty Name="EMP_ESTADO" ColumnName="EMP_ESTADO" />
+                <ScalarProperty Name="EMP_ID_TIENDA" ColumnName="EMP_ID_TIENDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAC_FACTURA">
+            <EntityTypeMapping TypeName="Model_Car_Center.FAC_FACTURA">
+              <MappingFragment StoreEntitySet="FAC_FACTURA">
+                <ScalarProperty Name="FAC_ID" ColumnName="FAC_ID" />
+                <ScalarProperty Name="FAC_ID_TIENDA" ColumnName="FAC_ID_TIENDA" />
+                <ScalarProperty Name="FAC_FECHA_REGISTRO" ColumnName="FAC_FECHA_REGISTRO" />
+                <ScalarProperty Name="FAC_ID_MTN" ColumnName="FAC_ID_MTN" />
+                <ScalarProperty Name="FAC_ESTADO" ColumnName="FAC_ESTADO" />
+                <ScalarProperty Name="FAC_SUBTOTAL" ColumnName="FAC_SUBTOTAL" />
+                <ScalarProperty Name="FAC_IMPUESTO" ColumnName="FAC_IMPUESTO" />
+                <ScalarProperty Name="FAC_TOTAL" ColumnName="FAC_TOTAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MTN_MANTENIMIENTO">
+            <EntityTypeMapping TypeName="Model_Car_Center.MTN_MANTENIMIENTO">
+              <MappingFragment StoreEntitySet="MTN_MANTENIMIENTO">
+                <ScalarProperty Name="MTN_ID" ColumnName="MTN_ID" />
+                <ScalarProperty Name="MTN_FECHA_ENTRADA" ColumnName="MTN_FECHA_ENTRADA" />
+                <ScalarProperty Name="MTN_FECHA_SALIDA" ColumnName="MTN_FECHA_SALIDA" />
+                <ScalarProperty Name="MTN_VEHICULO" ColumnName="MTN_VEHICULO" />
+                <ScalarProperty Name="MTN_PRESUPUESTO" ColumnName="MTN_PRESUPUESTO" />
+                <ScalarProperty Name="MTN_ESTADO" ColumnName="MTN_ESTADO" />
+                <ScalarProperty Name="MTN_TECNICO" ColumnName="MTN_TECNICO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RPT_REPUESTO">
+            <EntityTypeMapping TypeName="Model_Car_Center.RPT_REPUESTO">
+              <MappingFragment StoreEntitySet="RPT_REPUESTO">
+                <ScalarProperty Name="RPT_ID" ColumnName="RPT_ID" />
+                <ScalarProperty Name="RPT_SERIAL" ColumnName="RPT_SERIAL" />
+                <ScalarProperty Name="RPT_NOMBRE" ColumnName="RPT_NOMBRE" />
+                <ScalarProperty Name="RPT_DESCRIPCION" ColumnName="RPT_DESCRIPCION" />
+                <ScalarProperty Name="RPT_PRECIO_UND" ColumnName="RPT_PRECIO_UND" />
+                <ScalarProperty Name="RPT_UNIDADES" ColumnName="RPT_UNIDADES" />
+                <ScalarProperty Name="RPT_PORC_DESCUENTO" ColumnName="RPT_PORC_DESCUENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SRV_SERVICIO">
+            <EntityTypeMapping TypeName="Model_Car_Center.SRV_SERVICIO">
+              <MappingFragment StoreEntitySet="SRV_SERVICIO">
+                <ScalarProperty Name="SRV_ID" ColumnName="SRV_ID" />
+                <ScalarProperty Name="SRV_NOMBRE" ColumnName="SRV_NOMBRE" />
+                <ScalarProperty Name="SRV_DESCRIPCION" ColumnName="SRV_DESCRIPCION" />
+                <ScalarProperty Name="SRV_VALOR_MINIMO" ColumnName="SRV_VALOR_MINIMO" />
+                <ScalarProperty Name="SRV_VALOR_MAXIMO" ColumnName="SRV_VALOR_MAXIMO" />
+                <ScalarProperty Name="SRV_DESCUENTO" ColumnName="SRV_DESCUENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TDN_TIENDA">
+            <EntityTypeMapping TypeName="Model_Car_Center.TDN_TIENDA">
+              <MappingFragment StoreEntitySet="TDN_TIENDA">
+                <ScalarProperty Name="TDN_ID" ColumnName="TDN_ID" />
+                <ScalarProperty Name="TND_NOMBRE" ColumnName="TND_NOMBRE" />
+                <ScalarProperty Name="TND_DIRECCION" ColumnName="TND_DIRECCION" />
+                <ScalarProperty Name="TND_TELEFONO" ColumnName="TND_TELEFONO" />
+                <ScalarProperty Name="TND_ESTADO" ColumnName="TND_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VHE_VEHICULO">
+            <EntityTypeMapping TypeName="Model_Car_Center.VHE_VEHICULO">
+              <MappingFragment StoreEntitySet="VHE_VEHICULO">
+                <ScalarProperty Name="VHE_ID" ColumnName="VHE_ID" />
+                <ScalarProperty Name="VHE_PLACA" ColumnName="VHE_PLACA" />
+                <ScalarProperty Name="VHE_SERIAL_CHASIS" ColumnName="VHE_SERIAL_CHASIS" />
+                <ScalarProperty Name="VHE_SERIAL_MOTOR" ColumnName="VHE_SERIAL_MOTOR" />
+                <ScalarProperty Name="VHE_MARCA" ColumnName="VHE_MARCA" />
+                <ScalarProperty Name="VHE_MODELO" ColumnName="VHE_MODELO" />
+                <ScalarProperty Name="VHE_ESTADO_FISICO" ColumnName="VHE_ESTADO_FISICO" />
+                <ScalarProperty Name="VHE_DESCRIPCION_ESTADO" ColumnName="VHE_DESCRIPCION_ESTADO" />
+                <ScalarProperty Name="VHE_ESTADO" ColumnName="VHE_ESTADO" />
+                <ScalarProperty Name="VHE_PROPIETARIO" ColumnName="VHE_PROPIETARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VLC_VALOR_CATALOGO">
+            <EntityTypeMapping TypeName="Model_Car_Center.VLC_VALOR_CATALOGO">
+              <MappingFragment StoreEntitySet="VLC_VALOR_CATALOGO">
+                <ScalarProperty Name="VLC_ID" ColumnName="VLC_ID" />
+                <ScalarProperty Name="VLC_DESCRIPCION" ColumnName="VLC_DESCRIPCION" />
+                <ScalarProperty Name="VLC_VALOR" ColumnName="VLC_VALOR" />
+                <ScalarProperty Name="CTG_ID" ColumnName="CTG_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DTL_DETALLE_FACTURA_RPT">
+            <EntityTypeMapping TypeName="Model_Car_Center.DTL_DETALLE_FACTURA_RPT">
+              <MappingFragment StoreEntitySet="DTL_DETALLE_FACTURA_RPT">
+                <ScalarProperty Name="DTL_ID_FACTURA" ColumnName="DTL_ID_FACTURA" />
+                <ScalarProperty Name="DTL_DETALLE_RPT" ColumnName="DTL_DETALLE_RPT" />
+                <ScalarProperty Name="DTL_DESCUENTO_RPT" ColumnName="DTL_DESCUENTO_RPT" />
+                <ScalarProperty Name="DTL_VALOR" ColumnName="DTL_VALOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DTL_DETALLE_FACTURA_SRV">
+            <EntityTypeMapping TypeName="Model_Car_Center.DTL_DETALLE_FACTURA_SRV">
+              <MappingFragment StoreEntitySet="DTL_DETALLE_FACTURA_SRV">
+                <ScalarProperty Name="DTL_ID_FACTURA" ColumnName="DTL_ID_FACTURA" />
+                <ScalarProperty Name="DTL_DETALLE_SRV" ColumnName="DTL_DETALLE_SRV" />
+                <ScalarProperty Name="DTL_DESCUENTO_SRV" ColumnName="DTL_DESCUENTO_SRV" />
+                <ScalarProperty Name="DTL_VALOR" ColumnName="DTL_VALOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

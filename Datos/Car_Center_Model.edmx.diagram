@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="df156db6b4664b4f8708838ed3447ad4" Name="Diagram1">
+        <EntityTypeShape EntityType="Model_Car_Center.CLN_CLIENTE" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.CTG_CATALOGO" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.DTL_DETALLE_MANTENIMIENTO_RPT" Width="1.5" PointX="12" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.DTL_DETALLE_MANTENIMIENTO_SRV" Width="1.5" PointX="12" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.EMP_EMPLEADO" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.FAC_FACTURA" Width="1.5" PointX="15" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.MTN_MANTENIMIENTO" Width="1.5" PointX="9.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.RPT_REPUESTO" Width="1.5" PointX="9.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.SRV_SERVICIO" Width="1.5" PointX="9.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.TDN_TIENDA" Width="1.5" PointX="5.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.VHE_VEHICULO" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.VLC_VALOR_CATALOGO" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.DTL_DETALLE_FACTURA_RPT" Width="1.5" PointX="17.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model_Car_Center.DTL_DETALLE_FACTURA_SRV" Width="1.5" PointX="17.25" PointY="15.375" IsExpanded="true" />
+        <AssociationConnector Association="Model_Car_Center.FK__CLN_CLIEN__CLN_E__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__CLN_CLIEN__CLN_T__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__VHE_VEHIC__VHE_P__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__VLC_VALOR__CTG_I__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_E__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_I__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_I__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_E__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_I__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_I__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_T__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__EMP_EMPLE__EMP_E__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__EMP_EMPLE__EMP_I__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__EMP_EMPLE__EMP_T__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__MTN_MANTE__MTN_T__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_I__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__DTL_DETAL__DTL_I__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__FAC_FACTU__FAC_E__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__FAC_FACTU__FAC_I__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__FAC_FACTU__FAC_I__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__MTN_MANTE__MTN_E__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__MTN_MANTE__MTN_V__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__TDN_TIEND__TND_E__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__VHE_VEHIC__VHE_E__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__VHE_VEHIC__VHE_E__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__VHE_VEHIC__VHE_M__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="Model_Car_Center.FK__VHE_VEHIC__VHE_M__2E1BDC42" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
